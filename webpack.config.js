@@ -4,6 +4,7 @@ module.exports = {
   entry: {
     main: './src/app.js',
     about: './src/frase.js',
+    chiste: './src/chiste.js',
   },
   output: {
     filename: '[name].js',
