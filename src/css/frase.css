@@ -1,0 +1,41 @@
+body {
+    background-color: #11111F;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+#logo {
+    max-width: 200px;
+    margin: 20px auto;
+    display: block;
+}
+
+h1 {
+    font-size: 28px;
+}
+
+#chiste {
+    font-size: 18px;
+    margin: 20px;
+}
+
+button {
+    background-color: #F03D2F;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #D03123;
+}
+
+button:focus {
+    outline: none;
+}

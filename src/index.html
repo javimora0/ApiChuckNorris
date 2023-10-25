@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
     <title>Document</title>
 </head>
 
 <body>
-    
+
+        <a href="index.html"><img id="logo" src="https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png"></a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Categorías</th>
+            </tr>
+        </thead>
+        <tbody id="tablaCategorias">
+        </tbody>
+    </table>
+    <button id="button">Generar chiste</button><br>
+    <span id="chiste"></span><br>
+    <span>Busqueda de chistes</span>
+    <input type="text" id="textoBuscar" placeholder="palabra clave">
+    <button id="busqueda">Buscar</button>
 </body>
 <script  src="/dist/main.js"></script>
 </html>
