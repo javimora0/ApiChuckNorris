@@ -1,7 +1,6 @@
 import { Categoria } from './clases.js';
 
 const tablaCategorias = document.getElementById('tablaCategorias');
-const logo = document.getElementById('logo');
 const apiUrl = 'https://api.chucknorris.io/jokes/categories';
 
 var categorias = [];
@@ -9,7 +8,6 @@ var categorias = [];
 obtenerCategorias();
 
 function generarTabla(data) {
-
     data.forEach((categoria) => {
         const fila = document.createElement('tr');
         
@@ -36,12 +34,12 @@ async function obtenerCategorias() {
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
-            throw new Error('No se pudo obtener la informaciónde las categorias');
+            throw new Error('No se pudo obtener la información de las categorias');
         }
         const data = await response.json();
         console.log(data);
         const categorias = guardarCategorias(data);
-        generarTabla(categorias)
+        generarTabla(categorias);
         navegar(categorias);
     } catch (error) {
         console.error(error);
@@ -61,9 +59,7 @@ tablaCategorias.addEventListener('click', (event) => {
     }
 });
 
-
 function guardarCategorias(data) {
-
     for (let i = 0; i < data.length; i++) {
         categorias.push(new Categoria(data[i]));
     }
@@ -81,18 +77,31 @@ async function apiUrlRandom() {
 
         const response = await fetch(apiUrlRandom);
         if (!response.ok) {
-            throw new Error('No se pudo obtener la informaciónde las categorias');
+            throw new Error('No se pudo obtener la información de las categorias');
         }
         const data = await response.json();
         console.log(data);
-        chiste.textContent = data.value
+        chiste.textContent = data.value;
     } catch (error) {
         console.error(error);
     }
 }
+
 const chiste = document.getElementById('chiste');
 const boton = document.getElementById('button');
 
 boton.addEventListener('click', () => { 
     apiUrlRandom();
 });
+
+const busqueda = document.getElementById('busqueda');
+const textoBuscar = document.getElementById('textoBuscar');
+busqueda.addEventListener('click', () => { 
+    navegarChiste(textoBuscar.value);
+    window.location.href = 'chiste.html';
+});
+
+function navegarChiste(chiste) {
+    const chisteJSON = JSON.stringify(chiste);
+    localStorage.setItem('chistes', chisteJSON);
+}
