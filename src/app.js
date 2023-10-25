@@ -1,25 +1,34 @@
 import { Categoria } from './clases.js';
 
+const tablaCategorias = document.getElementById('tablaCategorias');
+const logo = document.getElementById('logo');
 const apiUrl = 'https://api.chucknorris.io/jokes/categories';
+
 var categorias = [];
+
 obtenerCategorias();
 
 function generarTabla(data) {
-    const tablaPilotos = document.getElementById('tablaCategorias');
 
     data.forEach((categoria) => {
-
         const fila = document.createElement('tr');
-        // Columna de la cats 
-        const columnaCats = document.createElement('td');        
-        columnaCats.textContent = `Categoria: ${categoria.name}`;
+        
+        // Columna de las categorías
+        const columnaCats = document.createElement('td');
+        
+        // Crear un enlace (<a>) y configurar su atributo "href" con la categoría como URL
+        const enlace = document.createElement('a');
+        enlace.href = 'frase.html';
+        enlace.textContent = categoria.name;
 
+        // Agregar el enlace al contenido de la columna
+        columnaCats.appendChild(enlace);
 
         // Agrega las columnas a la fila
         fila.appendChild(columnaCats);
 
         // Agrega la fila a la tabla
-        tablaPilotos.appendChild(fila);
+        tablaCategorias.appendChild(fila);
     });
 }
 
@@ -39,6 +48,19 @@ async function obtenerCategorias() {
     }
 }
 
+// Agrega un evento de clic a los enlaces dentro de la tabla
+tablaCategorias.addEventListener('click', (event) => {
+    const enlaceClicado = event.target;
+
+    // Verifica si el elemento clicado es un enlace (<a>)
+    if (enlaceClicado.tagName === 'A') {
+        const categoriaNombre = enlaceClicado.textContent;
+
+        // Guarda el nombre de la categoría en el Local Storage
+        localStorage.setItem('categoriaSeleccionada', categoriaNombre);
+    }
+});
+
 
 function guardarCategorias(data) {
 
@@ -53,9 +75,24 @@ function navegar(categorias) {
     localStorage.setItem('categorias', categoriasJSON);
 }
 
+async function apiUrlRandom() {
+    try {
+        const apiUrlRandom = 'https://api.chucknorris.io/jokes/random';
 
-
-function obtenerCategoriasDesdeLocalStorage() {
-    const categoriasJSON = localStorage.getItem('categorias');
-    categorias = JSON.parse(categoriasJSON);
+        const response = await fetch(apiUrlRandom);
+        if (!response.ok) {
+            throw new Error('No se pudo obtener la informaciónde las categorias');
+        }
+        const data = await response.json();
+        console.log(data);
+        chiste.textContent = data.value
+    } catch (error) {
+        console.error(error);
+    }
 }
+const chiste = document.getElementById('chiste');
+const boton = document.getElementById('button');
+
+boton.addEventListener('click', () => { 
+    apiUrlRandom();
+});
