@@ -7,7 +7,7 @@ module.exports = {
     chiste: './src/chiste.js',
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].main.js',
     path: path.resolve(__dirname, 'dist'),
   },
 };
