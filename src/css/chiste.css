@@ -33,10 +33,3 @@ table td {
     font-size: 16px;
 }
 
-table tr:nth-child(even) {
-    background-color: #333;
-}
-
-table tr:nth-child(odd) {
-    background-color: #222;
-}

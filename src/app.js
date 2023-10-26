@@ -48,7 +48,7 @@ async function obtenerCategorias() {
 
 // Agrega un evento de clic a los enlaces dentro de la tabla
 tablaCategorias.addEventListener('click', (event) => {
-    const enlaceClicado = event.target;
+    const enlaceClicado = event.target; //https://developer.mozilla.org/es/docs/Web/API/Event/target
 
     // Verifica si el elemento clicado es un enlace (<a>)
     if (enlaceClicado.tagName === 'A') {
